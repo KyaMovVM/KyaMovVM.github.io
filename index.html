@@ -2,19 +2,38 @@
 <html>
     <head>
         <title>hey</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styless.css">
     </head>
     <body>
-        <img src="kya.jpg" height="200px" style="position: absolute; right: 0px;">
-        <div class="heart"></div>
-        <div id="car-container"></div>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="api.html">API Logs</a>
+            <a href="docs.html">Docs</a>
+        </nav>
+        <main class="container">
+            <img src="kya.jpg" alt="Image" class="banner">
+            <div class="heart"></div>
+            <div id="car-container"></div>
+        </main>
         <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
         <script>
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize(600, 400);
-            document.getElementById('car-container').appendChild(renderer.domElement);
+            const container = document.getElementById('car-container');
+            container.appendChild(renderer.domElement);
+
+            function resize() {
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
 
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
             scene.add(ambientLight);
@@ -23,20 +42,26 @@
             scene.add(dirLight);
 
             const car = new THREE.Group();
+            const MATERIAL_COLORS = {
+                primary: 0x6750a4,
+                secondary: 0x625b71,
+                onSurface: 0x1c1b1f
+            };
+
             const bodyGeom = new THREE.BoxGeometry(4, 1, 2);
-            const bodyMat = new THREE.MeshPhongMaterial({ color: 0x00ffff });
+            const bodyMat = new THREE.MeshStandardMaterial({ color: MATERIAL_COLORS.primary });
             const body = new THREE.Mesh(bodyGeom, bodyMat);
             body.position.y = 0.5;
             car.add(body);
 
             const roofGeom = new THREE.BoxGeometry(2, 0.5, 1.5);
-            const roofMat = new THREE.MeshPhongMaterial({ color: 0xff00ff });
+            const roofMat = new THREE.MeshStandardMaterial({ color: MATERIAL_COLORS.secondary });
             const roof = new THREE.Mesh(roofGeom, roofMat);
             roof.position.set(-0.5, 1.0, 0);
             car.add(roof);
 
             const wheelGeom = new THREE.CylinderGeometry(0.4, 0.4, 0.6, 20);
-            const wheelMat = new THREE.MeshPhongMaterial({ color: 0x000000 });
+            const wheelMat = new THREE.MeshStandardMaterial({ color: MATERIAL_COLORS.onSurface });
             for (let x of [-1.5, 1.5]) {
                 for (let z of [-1, 1]) {
                     const wheel = new THREE.Mesh(wheelGeom, wheelMat);

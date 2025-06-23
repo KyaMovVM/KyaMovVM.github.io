@@ -1,9 +1,6 @@
-body{
-  background-color: rgb(255, 255, 255);
-}
-
 body {
-  height: 900px;
+  min-height: 100vh;
+  margin: 0;
   background: linear-gradient(45deg, #00e5ff, #fb04ff);
 }
 
@@ -49,8 +46,33 @@ body {
   }
 
 #car-container {
-  width: 600px;
-  height: 400px;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 3 / 2;
   margin: 20px auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+nav.main-nav {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+nav.main-nav a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
 }
 
