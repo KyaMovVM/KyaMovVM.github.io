@@ -2,19 +2,31 @@
 <html>
     <head>
         <title>hey</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styless.css">
     </head>
     <body>
-        <img src="kya.jpg" height="200px" style="position: absolute; right: 0px;">
+        <img src="kya.jpg" alt="Image" class="banner">
         <div class="heart"></div>
         <div id="car-container"></div>
         <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
         <script>
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize(600, 400);
-            document.getElementById('car-container').appendChild(renderer.domElement);
+            const container = document.getElementById('car-container');
+            container.appendChild(renderer.domElement);
+
+            function resize() {
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
 
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
             scene.add(ambientLight);
