@@ -3,7 +3,12 @@ import paramiko
 import requests
 
 
-def run_ssh_command(host: str, username: str, password: str, command: str) -> str:
+def run_ssh_command(
+    host: str,
+    username: str,
+    password: str,
+    command: str,
+) -> str:
     """Execute a command on a remote host via SSH and return its output."""
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
