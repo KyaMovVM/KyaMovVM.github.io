@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Logs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="api.html">API Logs</a>
+        <a href="docs.html">Docs</a>
+    </nav>
+    <main class="container">
+        <h1>Backend Logs</h1>
+        <ul id="log-menu">
+            <li><button onclick="showLog('error')">Error Logs</button></li>
+            <li><button onclick="showLog('access')">Access Logs</button></li>
+        </ul>
+        <pre id="log-output"></pre>
+    </main>
+    <script>
+        function showLog(type) {
+            document.getElementById('log-output').textContent = 'Loading ' + type + ' logs...';
+            // Future fetch() call can be placed here
+        }
+    </script>
+</body>
+</html>
