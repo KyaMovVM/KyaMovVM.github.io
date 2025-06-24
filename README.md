@@ -17,7 +17,17 @@ Each page includes a menu entry to show a transparent UML overlay with a simple 
 is only an example, credentials must be updated before use.
 
 ## Tests
-Unit tests for the backend script are located in `test_backend_tools.py` and can
-be executed with `python -m unittest`.
+Unit tests for the backend script are located in `test_backend_tools.py`.
+To run them, first install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Then execute the tests with:
+
+```bash
+python -m unittest
+```
 ## Development Plan
 Detailed steps for designing and maintaining the project are described in [development_plan.md](development_plan.md).
