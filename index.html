@@ -10,12 +10,20 @@
             <a href="index.html">Home</a>
             <a href="api.html">API Logs</a>
             <a href="docs.html">Docs</a>
+            <a href="#" onclick="toggleUml()">UML</a>
         </nav>
         <main class="container">
-            <img src="kya.jpg" alt="Image" class="banner">
+            <img src="https://via.placeholder.com/600x300?text=Banner" alt="Image" class="banner">
             <div class="heart"></div>
             <div id="car-container"></div>
         </main>
+        <div id="uml-overlay" class="uml-overlay">
+            <div class="uml-window">
+                <h2>UML Diagram</h2>
+                <p>Diagram will appear here.</p>
+                <button onclick="toggleUml()">Close</button>
+            </div>
+        </div>
         <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
         <script>
             const scene = new THREE.Scene();
@@ -79,6 +87,12 @@
                 renderer.render(scene, camera);
             };
             animate();
+            function toggleUml() {
+                const overlay = document.getElementById('uml-overlay');
+                overlay.style.display = overlay.style.display === 'block'
+                    ? 'none'
+                    : 'block';
+            }
         </script>
     </body>
 </html>

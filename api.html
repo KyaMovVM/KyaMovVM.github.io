@@ -10,6 +10,7 @@
         <a href="index.html">Home</a>
         <a href="api.html">API Logs</a>
         <a href="docs.html">Docs</a>
+        <a href="#" onclick="toggleUml()">UML</a>
     </nav>
     <main class="container">
         <h1>Backend Logs</h1>
@@ -19,10 +20,21 @@
         </ul>
         <pre id="log-output"></pre>
     </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <p>Diagram will appear here.</p>
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
     <script>
         function showLog(type) {
             document.getElementById('log-output').textContent = 'Loading ' + type + ' logs...';
             // Future fetch() call can be placed here
+        }
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
         }
     </script>
 </body>
