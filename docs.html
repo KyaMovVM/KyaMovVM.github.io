@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="api.html">API Logs</a>
+        <a href="docs.html">Docs</a>
+        <a href="#" onclick="toggleUml()">UML</a>
+    </nav>
+    <main class="container">
+        <h1>API Documentation</h1>
+        <section>
+            <h2>Endpoints</h2>
+            <p><strong>GET /api/logs</strong> - Retrieve backend log entries.</p>
+            <p><strong>POST /api/logs</strong> - Submit a new log entry.</p>
+        </section>
+        <section>
+            <h2>API Logs Page</h2>
+            <p>The <em>Error Logs</em> button fetches backend error logs.</p>
+            <p>The <em>Access Logs</em> button retrieves access logs from the server.</p>
+        </section>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="uml-diagram.svg" alt="UML diagram" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <script>
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
