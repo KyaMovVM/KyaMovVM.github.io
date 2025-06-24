@@ -15,3 +15,5 @@ Each page includes a menu entry to show a transparent UML overlay with a simple 
 ## Backend script
 `backend_tools.py` connects to a host via SSH and performs HTTP GET requests. It
 is only an example, credentials must be updated before use.
+## Development Plan
+Detailed steps for designing and maintaining the project are described in [development_plan.md](development_plan.md).
