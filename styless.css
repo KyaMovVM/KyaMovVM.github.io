@@ -74,6 +74,11 @@ nav.main-nav {
 nav.main-nav a {
   color: #000;
   text-decoration: none;
+
+.uml-img {
+  max-width: 100%;
+  height: auto;
+}
   font-weight: bold;
 }
 

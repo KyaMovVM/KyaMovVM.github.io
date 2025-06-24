@@ -10,7 +10,7 @@ HTTP requests could be performed.
 - **api.html** – placeholder interface for viewing backend logs.
 - **docs.html** – minimal API documentation.
 
-All pages include a menu entry to show a transparent UML overlay with a placeholder diagram.
+Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`).
 ## Backend script
 `backend_tools.py` connects to a host via SSH and performs HTTP GET requests. It
 is only an example, credentials must be updated before use.
