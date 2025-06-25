@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>API Logs</title>
+    <title>Fail2Ban Logs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -14,30 +14,31 @@
         <a href="#" onclick="toggleUml()">UML</a>
     </nav>
     <main class="container">
-        <h1>Backend Logs</h1>
+        <h1>Fail2Ban Logs</h1>
         <ul id="log-menu">
-            <li><button onclick="showLog('error')">Error Logs</button></li>
-            <li><button onclick="showLog('access')">Access Logs</button></li>
+            <li><button onclick="showLog('jail')">Jail Status</button></li>
+            <li><button onclick="showLog('bans')">Banned IPs</button></li>
         </ul>
         <pre id="log-output"></pre>
     </main>
     <div id="uml-overlay" class="uml-overlay">
         <div class="uml-window">
             <h2>UML Diagram</h2>
-            <img src="uml-diagram.svg" alt="UML diagram" class="uml-img">
+            <img src="fail2ban-uml.svg" alt="Fail2Ban UML" class="uml-img">
             <button onclick="toggleUml()">Close</button>
         </div>
     </div>
     <script>
         function showLog(type) {
-            document.getElementById('log-output').textContent = 'Loading ' + type + ' logs...';
+            document.getElementById('log-output').textContent =
+                'Loading ' + type + ' logs...';
             // Future fetch() call can be placed here
         }
         function toggleUml() {
             const overlay = document.getElementById('uml-overlay');
-            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+            overlay.style.display =
+                overlay.style.display === 'block' ? 'none' : 'block';
         }
     </script>
 </body>
 </html>
-

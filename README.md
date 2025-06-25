@@ -8,9 +8,10 @@ HTTP requests could be performed.
 ## Pages
 - **index.html** – main demo with the 3D car animation.
 - **api.html** – placeholder interface for viewing backend logs.
+- **fail2ban.html** – interface for viewing Fail2Ban logs.
 - **docs.html** – minimal API documentation.
 
-Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`).
+Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`). The Fail2Ban page uses <code>fail2ban-uml.svg</code>.
 
 ## Backend script
 `backend_tools.py` connects to a host via SSH and performs HTTP GET requests. It
