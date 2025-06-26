@@ -9,6 +9,7 @@
     <nav class="main-nav">
         <a href="index.html">Home</a>
         <a href="api.html">API Logs</a>
+        <a href="fail2ban.html">Fail2Ban</a>
         <a href="docs.html">Docs</a>
         <a href="#" onclick="toggleUml()">UML</a>
     </nav>
@@ -25,8 +26,18 @@
             <p>The <em>Access Logs</em> button retrieves access logs from the server.</p>
         </section>
         <section>
+            <h2>Fail2Ban Page</h2>
+            <p>The <em>Jail Status</em> button shows active jails.</p>
+            <p>The <em>Banned IPs</em> button lists blocked addresses.</p>
+            <p>The UML overlay on this page displays <code>fail2ban-uml.svg</code>.</p>
+        </section>
+        <section>
             <h2>GPU Support</h2>
             <p>Complex calculations may use the <a href="https://github.com/NVIDIA/cuda-python">cuda-python</a> library.</p>
+        </section>
+        <section>
+            <h2>Manual Tests</h2>
+            <p>Check each page loads correctly and the UML overlay appears when clicking the <em>UML</em> menu item. Verify links to Fail2Ban logs and GPU info work as expected.</p>
         </section>
     </main>
     <div id="uml-overlay" class="uml-overlay">
