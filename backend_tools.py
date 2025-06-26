@@ -1,6 +1,11 @@
-"""Simple backend interface for SSH commands and HTTP requests."""
+"""Simple backend interface for SSH commands, HTTP requests and optional GPU utilities."""
 import paramiko
 import requests
+
+try:
+    import cuda
+except Exception:  # library may be missing in development environment
+    cuda = None
 
 
 def run_ssh_command(
@@ -26,6 +31,23 @@ def fetch_url(url: str) -> str:
     return response.text
 
 
+def list_cuda_devices() -> list:
+    """Return a list of CUDA device names if cuda-python is available."""
+    if cuda is None:
+        return []
+    try:
+        cuda.cuInit(0)
+        count = cuda.cuDeviceGetCount()
+        names = []
+        for i in range(count):
+            dev = cuda.cuDeviceGet(i)
+            name = cuda.cuDeviceGetName(dev)
+            names.append(name)
+        return names
+    except Exception:
+        return []
+
+
 if __name__ == "__main__":
     # Example usage placeholders
     HOST = "example.com"
@@ -33,3 +55,4 @@ if __name__ == "__main__":
     PASSWORD = "password"
     print(run_ssh_command(HOST, USER, PASSWORD, "echo hello"))
     print(fetch_url("https://example.com"))
+    print(list_cuda_devices())

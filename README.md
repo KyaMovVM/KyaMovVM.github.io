@@ -13,8 +13,10 @@ HTTP requests could be performed.
 Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`).
 
 ## Backend script
-`backend_tools.py` connects to a host via SSH and performs HTTP GET requests. It
-is only an example, credentials must be updated before use.
+`backend_tools.py` connects to a host via SSH and performs HTTP GET requests.
+It is only an example, credentials must be updated before use. GPU tasks can
+be prototyped using the [cuda-python](https://github.com/NVIDIA/cuda-python)
+library.
 
 ## Tests
 Unit tests for the backend script are located in `test_backend_tools.py`.
