@@ -14,8 +14,10 @@ HTTP requests could be performed.
 Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`). The Fail2Ban page uses <code>fail2ban-uml.svg</code>.
 
 ## Backend script
-`backend_tools.py` connects to a host via SSH and performs HTTP GET requests. It
-is only an example, credentials must be updated before use.
+`backend_tools.py` connects to a host via SSH and performs HTTP GET requests.
+It is only an example, credentials must be updated before use. GPU tasks can
+be prototyped using the [cuda-python](https://github.com/NVIDIA/cuda-python)
+library.
 
 ## Tests
 Unit tests for the backend script are located in `test_backend_tools.py`.
@@ -30,5 +32,9 @@ Then execute the tests with:
 ```bash
 python -m unittest
 ```
+
+## Manual Tests
+
+Open each HTML page in a browser and ensure the UML overlay appears when clicking the menu entry. Check that the Fail2Ban page shows placeholder logs and that CUDA device listing runs without errors.
 ## Development Plan
 Detailed steps for designing and maintaining the project are described in [development_plan.md](development_plan.md).

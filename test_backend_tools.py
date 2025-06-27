@@ -11,6 +11,12 @@ if 'paramiko' not in sys.modules:
 if 'requests' not in sys.modules:
     sys.modules['requests'] = types.ModuleType('requests')
     sys.modules['requests'].get = lambda *args, **kwargs: None
+if 'cuda' not in sys.modules:
+    sys.modules['cuda'] = types.ModuleType('cuda')
+    sys.modules['cuda'].cuInit = lambda x: None
+    sys.modules['cuda'].cuDeviceGetCount = lambda: 0
+    sys.modules['cuda'].cuDeviceGet = lambda i: None
+    sys.modules['cuda'].cuDeviceGetName = lambda dev: 'mock'
 
 import backend_tools
 
@@ -38,6 +44,9 @@ class TestBackendTools(unittest.TestCase):
         self.assertEqual(result, 'ok')
         mock_get.assert_called_with('https://example.com')
         mock_response.raise_for_status.assert_called()
+
+    def test_list_cuda_devices(self):
+        self.assertEqual(backend_tools.list_cuda_devices(), [])
 
 if __name__ == '__main__':
     unittest.main()
