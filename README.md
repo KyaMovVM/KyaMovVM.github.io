@@ -19,9 +19,30 @@ It is only an example, credentials must be updated before use. GPU tasks can
 be prototyped using the [cuda-python](https://github.com/NVIDIA/cuda-python)
 library.
 
+## Инструменты анализа
+
+Скрипт `crossref.py` собирает перекрёстные ссылки на функции, методы и
+переменные во всём проекте. Запуск с параметром `-o` создаст файл
+`crossref.txt` с координатами объектов:
+
+```bash
+python crossref.py -o crossref.txt
+```
+
+Для редактирования шаблонов ручного тестирования предназначен
+`template_editor.py`. Без параметров он покажет список доступных шаблонов,
+а передав имя файла – позволит заменить его содержимое.
+
+## Генерация AGENTS.md
+
+После изменения файлов в каталоге `docs` или UML-диаграмм
+запустите скрипт `generate_agents.py`. Он обновит файл `AGENTS.md`,
+вставив в него текущее содержимое документации и изображения диаграмм.
+
 ## Tests
-Unit tests for the backend script are located in `test_backend_tools.py`.
-To run them, first install the required dependencies:
+Unit tests находятся в директории `tests` и файле
+`test_backend_tools.py`. Чтобы их запустить, сначала установите
+зависимости:
 
 ```bash
 pip install -r requirements.txt
@@ -30,7 +51,7 @@ pip install -r requirements.txt
 Then execute the tests with:
 
 ```bash
-python -m unittest
+pytest -q
 ```
 
 ## Manual Tests
