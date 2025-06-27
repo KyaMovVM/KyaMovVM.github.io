@@ -76,8 +76,6 @@ nav.main-nav a {
   font-weight: bold;
 }
 
-
-
 .banner {
   width: 50%;
   max-width: 400px;
@@ -149,37 +147,6 @@ nav.main-nav a {
   padding: 1rem;
   max-width: 600px;
 }
-
-.uml-img {
-  max-width: 100%;
-  height: auto;
-}
-
-
-.banner {
-  width: 50%;
-  max-width: 400px;
-  display: block;
-  margin: 0 auto;
-}
-
-.uml-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.uml-window {
-  background: rgba(255, 255, 255, 0.9);
-  margin: 5% auto;
-  padding: 1rem;
-  max-width: 600px;
-}
-
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -205,15 +172,27 @@ nav.main-nav a {
 }
 
 .mdl-layout__header-row .mdl-navigation {
+  display: flex !important;
   flex-wrap: wrap;
 }
 
 /* Keep UML overlay above other elements */
 .uml-overlay {
-  z-index: 2000;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
 }
 
 .uml-window {
   position: relative;
-  z-index: 2001;
+  background: rgba(255, 255, 255, 0.9);
+  margin: 5% auto;
+  padding: 1rem;
+  max-width: 600px;
+  z-index: 10001;
 }
