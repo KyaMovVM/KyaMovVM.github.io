@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSDoc Reference</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="../api.html">API Logs</a>
+        <a href="../fail2ban.html">Fail2Ban</a>
+        <a href="../docs.html">Docs</a>
+        <a href="../jsdoc/index.html">JSDoc</a>
+        <a href="#" onclick="toggleUml()">UML</a>
+    </nav>
+    <main class="container">
+        <h1>JavaScript API Reference</h1>
+        <p>This page is a placeholder for auto-generated JSDoc output.</p>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="../uml-diagram.svg" alt="UML diagram" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <script>
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

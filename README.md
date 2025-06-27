@@ -10,6 +10,7 @@ HTTP requests could be performed.
 - **api.html** – placeholder interface for viewing backend logs.
 - **fail2ban.html** – interface for viewing Fail2Ban logs.
 - **docs.html** – minimal API documentation.
+- **jsdoc/index.html** – generated interface reference using JSDoc.
 
 Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`). The Fail2Ban page uses <code>fail2ban-uml.svg</code>.
 
@@ -18,6 +19,10 @@ Each page includes a menu entry to show a transparent UML overlay with a simple 
 It is only an example, credentials must be updated before use. GPU tasks can
 be prototyped using the [cuda-python](https://github.com/NVIDIA/cuda-python)
 library.
+
+## Interface documentation
+JavaScript functions are commented in the JSDoc format. Run `npx jsdoc -c jsdoc.json`
+to generate HTML docs inside the `jsdoc/` folder.
 
 ## Tests
 Unit tests for the backend script are located in `test_backend_tools.py`.
