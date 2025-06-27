@@ -10,6 +10,10 @@ HTTP requests could be performed.
 - **api.html** – placeholder interface for viewing backend logs.
 - **fail2ban.html** – interface for viewing Fail2Ban logs.
 - **docs.html** – minimal API documentation.
+- **modules.html** – обзор структуры модулей проекта.
+- **plan.html** – пошаговый план разработки.
+- **crossref.html** – таблица перекрёстных ссылок на функции и методы.
+- **json_intro.html** – краткое введение в JSON Schema.
 
 Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`). The Fail2Ban page uses <code>fail2ban-uml.svg</code>.
 
