@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -51,9 +57,11 @@ img {
 }
 
 .container {
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
   padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 nav.main-nav {
@@ -103,4 +111,18 @@ nav.main-nav a {
 .uml-img {
   max-width: 100%;
   height: auto;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+@media (max-width: 600px) {
+  .banner {
+    width: 80%;
+  }
+  .uml-window {
+    width: 90%;
+    max-width: none;
+  }
 }
