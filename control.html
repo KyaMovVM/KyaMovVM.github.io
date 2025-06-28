@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="material.min.css">
+    <script defer src="material.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div id="header-placeholder"></div>
+    <main class="mdl-layout__content container">
+        <h1>Управление проектом</h1>
+        <section>
+            <h2>График работ</h2>
+            <canvas id="project-chart" width="400" height="200"></canvas>
+        </section>
+        <section>
+            <h2>Смета</h2>
+            <table class="mdl-data-table mdl-js-data-table">
+                <thead>
+                    <tr><th>Статья</th><th>Сумма, ₽</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Разработка</td><td>1500</td></tr>
+                    <tr><td>Дизайн</td><td>500</td></tr>
+                    <tr><td>Тестирование</td><td>300</td></tr>
+                    <tr><td>Резерв</td><td>200</td></tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Список требований</h2>
+            <p>Изменяйте пункты через <code>python3 requirements_editor.py --edit</code>.</p>
+            <ul id="req-list"></ul>
+        </section>
+        <section>
+            <h2>Процедура контроля изменений</h2>
+            <ol>
+                <li>Оформить запрос на изменение и оценить влияние.</li>
+                <li>Обновить файл <code>proj_requirements.txt</code> через скрипт.</li>
+                <li>Запустить тесты <code>pytest -q</code>.</li>
+                <li>Зафиксировать изменения коммитом.</li>
+                <li>При обновлении документации выполнить <code>python3 generate_agents.py</code>.</li>
+            </ol>
+        </section>
+        <section>
+            <h2>Эволюционное прототипирование</h2>
+            <p>Подход предполагает быстрое создание простого прототипа и постепенное его усложнение. Каждая итерация основывается на обратной связи пользователей и добавляет новую функциональность, сохраняя работающий продукт на каждом этапе.</p>
+        </section>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="uml-diagram.svg" alt="UML diagram" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('header.html').then(r => r.text()).then(t => {
+            const placeholder = document.getElementById('header-placeholder');
+            placeholder.outerHTML = t;
+            if (window.componentHandler) {
+                const layout = document.querySelector('.mdl-layout');
+                if (layout) {
+                    layout.classList.remove('is-upgraded');
+                    layout.removeAttribute('data-upgraded');
+                    componentHandler.upgradeElement(layout);
+                }
+            }
+        });
+        fetch('footer.html').then(r => r.text()).then(t => {
+            document.getElementById('footer-placeholder').innerHTML = t;
+            if (window.componentHandler) componentHandler.upgradeDom();
+        });
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+        const ctx = document.getElementById('project-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр'],
+                datasets: [{
+                    label: 'Расходы',
+                    data: [500, 700, 600, 800],
+                    borderColor: 'rgb(75, 192, 192)',
+                    fill: false
+                }]
+            },
+            options: { responsive: true }
+        });
+        fetch('proj_requirements.txt').then(r => r.text()).then(t => {
+            const list = document.getElementById('req-list');
+            t.trim().split(/\n+/).forEach(line => {
+                const li = document.createElement('li');
+                const chk = document.createElement('input');
+                chk.type = 'checkbox';
+                li.appendChild(chk);
+                li.append(' ' + line);
+                list.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
