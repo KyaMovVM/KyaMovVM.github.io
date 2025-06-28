@@ -47,14 +47,20 @@
     <div id="footer-placeholder"></div>
     <script>
             fetch('header.html').then(r => r.text()).then(t => {
-            const placeholder = document.getElementById('header-placeholder');
-            placeholder.outerHTML = t;
+                const placeholder = document.getElementById('header-placeholder');
+                placeholder.outerHTML = t;
+                if (window.componentHandler) {
+                    const layout = document.querySelector('.mdl-layout');
+                    if (layout) {
+                        layout.classList.remove('is-upgraded');
+                        layout.removeAttribute('data-upgraded');
+                        componentHandler.upgradeElement(layout);
+                    }
+                }
+            });
+        fetch('footer.html').then(r=>r.text()).then(t => {
+            document.getElementById('footer-placeholder').innerHTML = t;
             if (window.componentHandler) componentHandler.upgradeDom();
-
-        });
-        fetch('footer.html').then(r => r.text()).then(t => {
-            document.getElementById('footer-placeholder').outerHTML = t;
-            upgradeMdl();
         });
         function toggleUml() {
             const overlay = document.getElementById('uml-overlay');
