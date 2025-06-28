@@ -43,19 +43,10 @@ function	test_list_templates	./tests/test_template_editor.py:11        </pre>
     </div>
     <div id="footer-placeholder"></div>
     <script>
-        function upgradeMdl() {
-            const layout = document.querySelector('.mdl-layout');
-            if (window.componentHandler && layout) {
-                layout.classList.remove('is-upgraded');
-                window.componentHandler.upgradeDom();
-            } else {
-                setTimeout(upgradeMdl, 50);
-            }
-        }
-
-        fetch('header.html').then(r => r.text()).then(t => {
-            document.getElementById('header-placeholder').outerHTML = t;
-            upgradeMdl();
+            fetch('header.html').then(r => r.text()).then(t => {
+            const placeholder = document.getElementById('header-placeholder');
+            placeholder.outerHTML = t;
+            if (window.componentHandler) componentHandler.upgradeDom();
         });
         fetch('footer.html').then(r => r.text()).then(t => {
             document.getElementById('footer-placeholder').outerHTML = t;
