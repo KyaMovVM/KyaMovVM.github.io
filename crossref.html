@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>API Documentation</title>
+    <title>Cross References</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -11,31 +11,28 @@
 <body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <div id="header-placeholder"></div>
     <main class="mdl-layout__content container">
-        <h1>API Documentation</h1>
-        <section>
-            <h2>Endpoints</h2>
-            <p><strong>GET /api/logs</strong> - Retrieve backend log entries.</p>
-            <p><strong>POST /api/logs</strong> - Submit a new log entry.</p>
-        </section>
-        <section>
-            <h2>API Logs Page</h2>
-            <p>The <em>Error Logs</em> button fetches backend error logs.</p>
-            <p>The <em>Access Logs</em> button retrieves access logs from the server.</p>
-        </section>
-        <section>
-            <h2>Fail2Ban Page</h2>
-            <p>The <em>Jail Status</em> button shows active jails.</p>
-            <p>The <em>Banned IPs</em> button lists blocked addresses.</p>
-            <p>The UML overlay on this page displays <code>fail2ban-uml.svg</code>.</p>
-        </section>
-        <section>
-            <h2>GPU Support</h2>
-            <p>Complex calculations may use the <a href="https://github.com/NVIDIA/cuda-python">cuda-python</a> library.</p>
-        </section>
-        <section>
-            <h2>Manual Tests</h2>
-            <p>Check each page loads correctly and the UML overlay appears when clicking the <em>UML</em> menu item. Verify links to Fail2Ban logs and GPU info work as expected.</p>
-        </section>
+        <h1>Перекрёстные ссылки</h1>
+        <pre>
+variable	DOCS	./generate_agents.py:4
+variable	GUIDELINES	./generate_agents.py:7
+variable	IMAGES	./generate_agents.py:5
+variable	ROOT	./generate_agents.py:3
+variable	TEMPLATE_DIR	./template_editor.py:4
+class	TestBackendTools	./test_backend_tools.py:23
+method	TestBackendTools.test_fetch_url	./test_backend_tools.py:38
+method	TestBackendTools.test_list_cuda_devices	./test_backend_tools.py:48
+method	TestBackendTools.test_run_ssh_command	./test_backend_tools.py:25
+function	edit_template	./template_editor.py:23
+function	fetch_url	./backend_tools.py:27
+function	list_cuda_devices	./backend_tools.py:34
+function	list_templates	./template_editor.py:7
+function	load_template	./template_editor.py:11
+function	main	./generate_agents.py:15
+function	main	./template_editor.py:39
+function	run_ssh_command	./backend_tools.py:11
+function	save_template	./template_editor.py:18
+function	test_edit_cycle	./tests/test_template_editor.py:16
+function	test_list_templates	./tests/test_template_editor.py:11        </pre>
     </main>
     <div id="uml-overlay" class="uml-overlay">
         <div class="uml-window">
