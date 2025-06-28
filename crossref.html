@@ -60,6 +60,7 @@ function	test_list_templates	./tests/test_template_editor.py:11        </pre>
         fetch('footer.html').then(r => r.text()).then(t => {
             document.getElementById('footer-placeholder').outerHTML = t;
             upgradeMdl();
+
         });
         function toggleUml() {
             const overlay = document.getElementById('uml-overlay');
