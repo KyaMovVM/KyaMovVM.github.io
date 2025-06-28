@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="material.min.css">
+    <script defer src="material.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div id="header-placeholder"></div>
+    <main class="mdl-layout__content container">
+        <h1>Вход</h1>
+        <form id="login-form" onsubmit="return false;">
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="username" placeholder="Username">
+            </div>
+            <label class="mdl-radio mdl-js-radio" for="radio-password">
+                <input type="radio" id="radio-password" class="mdl-radio__button" name="auth-type" value="password" checked>
+                <span class="mdl-radio__label">Пароль</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio" for="radio-ssh">
+                <input type="radio" id="radio-ssh" class="mdl-radio__button" name="auth-type" value="ssh">
+                <span class="mdl-radio__label">SSH ключ</span>
+            </label>
+            <div id="password-group" class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="password" id="password" placeholder="Password">
+            </div>
+            <div id="key-group" class="mdl-textfield mdl-js-textfield" style="display:none;">
+                <textarea class="mdl-textfield__input" id="ssh-key" rows="3" placeholder="SSH key"></textarea>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="mfa" placeholder="MFA code">
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Отправить</button>
+        </form>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="uml-diagram.svg" alt="UML diagram" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('header.html').then(r => r.text()).then(t => {
+            const placeholder = document.getElementById('header-placeholder');
+            placeholder.outerHTML = t;
+            if (window.componentHandler) componentHandler.upgradeDom();
+        });
+        fetch('footer.html').then(r => r.text()).then(t => {
+            document.getElementById('footer-placeholder').innerHTML = t;
+            if (window.componentHandler) componentHandler.upgradeDom();
+        });
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+        const radios = document.querySelectorAll('input[name="auth-type"]');
+        const pw = document.getElementById('password-group');
+        const key = document.getElementById('key-group');
+        radios.forEach(r => r.addEventListener('change', () => {
+            if (document.getElementById('radio-ssh').checked) {
+                pw.style.display = 'none';
+                key.style.display = 'block';
+            } else {
+                pw.style.display = 'block';
+                key.style.display = 'none';
+            }
+        }));
+    </script>
+</body>
+</html>
