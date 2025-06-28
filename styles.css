@@ -7,7 +7,6 @@ body {
 .box {
   width: 200px;
   height: 200px;
-  
   border-top: 10px solid lightgreen;
   border-right: 10px solid mediumpurple;
   border-bottom: 10px solid lightsalmon;
@@ -16,7 +15,6 @@ body {
 
 .heart {
   position: relative;
-  
   width: 200px;
   height: 160px;
 }
@@ -25,25 +23,20 @@ body {
 .heart:after {
   position: absolute;
   content: "";
-  
   width: 100px;
   height: 160px;
   left: 100px;
-  
   background-color: tomato;
-  
   border-radius: 100px 100px 0 0;
-  
   transform: rotate(-45deg);
   transform-origin: 0 100%;
 }
 
-  .heart:after {
-    left: 0;
-  
+.heart:after {
+  left: 0;
   transform-origin: 100% 100%;
-    transform: rotate(45deg);
-  }
+  transform: rotate(45deg);
+}
 
 #car-container {
   width: 100%;
@@ -83,6 +76,7 @@ nav.main-nav a {
   margin: 0 auto;
 }
 
+/* UML overlay */
 .uml-overlay {
   display: none;
   position: fixed;
@@ -91,99 +85,22 @@ nav.main-nav a {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-}
-
-.uml-window {
-  background: rgba(255, 255, 255, 0.9);
-  margin: 5% auto;
-  padding: 1rem;
-  max-width: 600px;
-}
-
-.uml-img {
-  max-width: 100%;
-  height: auto;
-}
-
-nav.main-nav a {
-  color: #000;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.banner {
-  width: 50%;
-  max-width: 400px;
-  display: block;
-  margin: 0 auto;
-}
-
-.uml-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.uml-window {
-  background: rgba(255, 255, 255, 0.9);
-  margin: 5% auto;
-  padding: 1rem;
-  max-width: 600px;
-}
-
-.uml-img {
-  max-width: 100%;
-  height: auto;
-}
-
-
-.uml-window {
-  background: rgba(255, 255, 255, 0.9);
-  margin: 5% auto;
-  padding: 1rem;
-  max-width: 600px;
-}
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-nav.main-nav {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-nav.main-nav a {
-  color: #000;
-  text-decoration: none;
-  font-weight: bold;
-}
-}
-
-/* Keep UML overlay above other elements */
-.uml-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
   z-index: 10000;
+  align-items: center;
+  justify-content: center;
 }
 
 .uml-window {
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   margin: 5% auto;
   padding: 1rem;
   max-width: 600px;
   z-index: 10001;
+}
+
+.uml-img {
+  max-width: 100%;
+  height: auto;
 }

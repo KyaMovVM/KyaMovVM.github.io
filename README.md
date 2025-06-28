@@ -2,6 +2,7 @@
 
 This repository hosts a simple demo site with a rotating 3D car and Material Design colors.
 Additional pages provide an API log viewer and basic documentation. A small Python
+В проект включены локальные файлы Material Design Lite, поэтому подключение к code.getmdl.io не требуется.
 script (`backend_tools.py`) demonstrates how backend interactions over SSH and
 HTTP requests could be performed.
 
@@ -16,6 +17,7 @@ HTTP requests could be performed.
 - **json_intro.html** – краткое введение в JSON Schema.
 
 Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`). The Fail2Ban page uses <code>fail2ban-uml.svg</code>.
+Окно диаграммы располагается поверх остальных элементов страницы и имеет полупрозрачный фон.
 
 ## Backend script
 `backend_tools.py` connects to a host via SSH and performs HTTP GET requests.
