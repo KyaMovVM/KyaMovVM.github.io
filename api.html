@@ -38,6 +38,7 @@
     <div id="footer-placeholder"></div>
     <script>
         fetch('header.html').then(r=>r.text()).then(t => {
+
             document.getElementById('header-placeholder').outerHTML = t;
             if (window.componentHandler) componentHandler.upgradeDom();
         });
