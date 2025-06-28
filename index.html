@@ -37,11 +37,10 @@
                     }
                 }
             });
-            fetch('footer.html').then(r=>r.text()).then(t => {
-                document.getElementById('footer-placeholder').innerHTML = t;
-                if (window.componentHandler) componentHandler.upgradeDom();
+            fetch('footer.html').then(r => r.text()).then(t => {
+                document.getElementById('footer-placeholder').outerHTML = t;
+                upgradeMdl();
             });
-
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ antialias: true });
