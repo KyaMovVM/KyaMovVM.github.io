@@ -165,15 +165,6 @@ nav.main-nav a {
   text-decoration: none;
   font-weight: bold;
 }
-
-/* Ensure header navigation does not disappear on narrow screens */
-.mdl-layout__header-row {
-  height: auto;
-}
-
-.mdl-layout__header-row .mdl-navigation {
-  display: flex !important;
-  flex-wrap: wrap;
 }
 
 /* Keep UML overlay above other elements */
