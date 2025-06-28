@@ -62,6 +62,6 @@ pytest -q
 
 ## Manual Tests
 
-Open each HTML page in a browser and ensure the UML overlay appears when clicking the menu entry. Check that the Fail2Ban page shows placeholder logs and that CUDA device listing runs without errors.
+Полный список ручных проверок приведён в файле [docs/manual_tests.md](docs/manual_tests.md). Пройдите по чек‑листу, чтобы убедиться, что каждая страница корректно отображает UML‑диаграммы и взаимодействует с сервером.
 ## Development Plan
 Detailed steps for designing and maintaining the project are described in [development_plan.md](development_plan.md).
