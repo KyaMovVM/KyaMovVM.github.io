@@ -48,6 +48,7 @@ function	test_list_templates	./tests/test_template_editor.py:11        </pre>
             holder.outerHTML = t;
             const layout = document.querySelector('.mdl-layout');
             if (layout) layout.classList.remove('is-upgraded');
+
             if (window.componentHandler) componentHandler.upgradeDom();
         });
         fetch('footer.html').then(r=>r.text()).then(t => {
