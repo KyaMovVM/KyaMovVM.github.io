@@ -21,10 +21,30 @@
       });
     });
   }
+  function attachLangListener(){
+    const link = document.querySelector('.lang-link');
+    if (!link) return;
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const html = document.documentElement;
+      const isRu = html.lang === 'ru';
+      html.lang = isRu ? 'en' : 'ru';
+      link.textContent = isRu ? 'RU' : 'EN';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (isRu) {
+          el.dataset.ru = el.textContent;
+          el.textContent = el.dataset.en;
+        } else if (el.dataset.ru) {
+          el.textContent = el.dataset.ru;
+        }
+      });
+    });
+  }
   fetch(base + 'header.html').then(r => r.text()).then(t => {
     const placeholder = document.getElementById('header-placeholder');
     placeholder.outerHTML = t;
     attachUmlListeners();
+    attachLangListener();
     upgradeLayout();
   });
   fetch(base + 'footer.html').then(r => r.text()).then(t => {
