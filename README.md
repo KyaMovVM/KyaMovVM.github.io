@@ -67,6 +67,8 @@ Then execute the tests with:
 ```bash
 pytest -q
 ```
+## Robots.txt и карта сайта
+Поисковые системы должны обращаться к домену https://kyamovvm.com. Файл `robots.txt` указывает на `sitemap.xml`, где перечислены все HTML‑страницы проекта. В нём также прописана директива `Host: kyamovvm.com`, предотвращающая индексирование github.io.
 
 ## Manual Tests
 
