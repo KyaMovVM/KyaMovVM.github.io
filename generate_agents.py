@@ -4,7 +4,7 @@ ROOT = pathlib.Path(__file__).parent
 DOCS = [
     ROOT / 'docs' / 'templates.md',
     ROOT / 'docs' / 'metaphors.md',
-    ROOT / 'docs' / 'manual_tests.md',
+    ROOT / 'docs' / 'manual_tests.html',
     ROOT / 'docs' / 'review.md',
 ]
 IMAGES = ['uml-diagram.svg', 'fail2ban-uml.svg']

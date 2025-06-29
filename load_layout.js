@@ -11,9 +11,20 @@
       }
     }
   }
+  function attachUmlListeners(){
+    document.querySelectorAll('.uml-link').forEach(l => {
+      l.addEventListener('click', e => {
+        e.preventDefault();
+        if (typeof window.toggleUml === 'function') {
+          window.toggleUml();
+        }
+      });
+    });
+  }
   fetch(base + 'header.html').then(r => r.text()).then(t => {
     const placeholder = document.getElementById('header-placeholder');
     placeholder.outerHTML = t;
+    attachUmlListeners();
     upgradeLayout();
   });
   fetch(base + 'footer.html').then(r => r.text()).then(t => {
