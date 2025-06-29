@@ -5,6 +5,7 @@ Additional pages provide an API log viewer and basic documentation. A small Pyth
 В проект включены локальные файлы Material Design Lite, поэтому подключение к code.getmdl.io не требуется.
 script (`backend_tools.py`) demonstrates how backend interactions over SSH and
 HTTP requests could be performed.
+Кроме статического варианта сайт может быть размещён как приложение Django. Скопируйте HTML и ресурсы в каталог `static` проекта и подключите страницы как шаблоны.
 
 ## Pages
 - **index.html** – main demo with the 3D car animation.
