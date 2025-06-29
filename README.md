@@ -18,6 +18,13 @@ HTTP requests could be performed.
 
 Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`). The Fail2Ban page uses <code>fail2ban-uml.svg</code>.
 Окно диаграммы располагается поверх остальных элементов страницы и имеет полупрозрачный фон.
+Для загрузки меню и подвала теперь используется скрипт `load_layout.js`. Укажите атрибут `data-base` с относительным путём к ресурсам, чтобы страница работала в любой папке, например `/usr/share/django-projects/welcome/static`:
+```html
+<div id="footer-placeholder"></div>
+<script src="load_layout.js" data-base="./"></script>
+```
+Для копирования сайта в целевой каталог запустите `python3 deploy_static.py /usr/share/django-projects/welcome/static`.
+
 
 ## Backend script
 `backend_tools.py` connects to a host via SSH and performs HTTP GET requests.
