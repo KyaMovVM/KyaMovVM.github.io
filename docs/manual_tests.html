@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="material.min.css">
+    <script defer src="material.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div id="header-placeholder"></div>
+    <main class="mdl-layout__content container">
+        <h1>Руководство по ручному тестированию</h1>
+        <pre>
+# Руководство по ручному тестированию
+
+Ниже приведены подробные чек-листы для проверки каждого раздела сайта.
+
+## Главная страница (`index.html`)
+- [ ] Анимация автомобиля отображается и вращается.
+- [ ] Кнопка показа UML-диаграммы открывает окно с картинкой `uml-diagram.svg`.
+- [ ] Меню навигации содержит ссылки на все разделы.
+
+## Страница API (`api.html`)
+- [ ] Кнопки загрузки логов выполняют запросы и выводят результат.
+- [ ] Ошибки сети отображаются пользователю.
+- [ ] UML-диаграмма появляется по нажатию пункта меню `UML`.
+
+## Страница Fail2Ban (`fail2ban.html`)
+- [ ] Кнопка **Jail Status** выводит список активных тюрем.
+- [ ] Кнопка **Banned IPs** показывает блокированные адреса.
+- [ ] Отображается диаграмма `fail2ban-uml.svg` при выборе UML.
+
+## Документация (`docs.html`)
+- [ ] Список конечных точек API соответствует актуальной реализации.
+- [ ] Ссылки внутри страницы работают корректно.
+- [ ] Раздел с описанием ручных тестов указывает на данный файл.
+
+## Прочие страницы
+- [ ] На страницах `modules.html`, `plan.html` и `crossref.html` корректно работает всплывающее окно с UML-диаграммой.
+- [ ] Все ссылки в меню ведут на существующие разделы.
+- [ ] Страница `login.html` переключает поля между паролем и SSH ключом.
+- [ ] MFA код принимается вместе с выбранным методом входа.
+        </pre>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="uml-diagram.svg" alt="UML diagram" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="load_layout.js" data-base="./"></script>
+    <script>
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>

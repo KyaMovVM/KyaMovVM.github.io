@@ -70,6 +70,6 @@ pytest -q
 
 ## Manual Tests
 
-Полный список ручных проверок приведён в файле [docs/manual_tests.md](docs/manual_tests.md). Пройдите по чек‑листу, чтобы убедиться, что каждая страница корректно отображает UML‑диаграммы и взаимодействует с сервером.
+Полный список ручных проверок приведён в файле [docs/manual_tests.html](docs/manual_tests.html). Пройдите по чек‑листу, чтобы убедиться, что каждая страница корректно отображает UML‑диаграммы и взаимодействует с сервером.
 ## Development Plan
 Detailed steps for designing and maintaining the project are described in [development_plan.md](development_plan.md).
