@@ -7,6 +7,18 @@ script (`backend_tools.py`) demonstrates how backend interactions over SSH and
 HTTP requests could be performed.
 Кроме статического варианта сайт может быть размещён как приложение Django. Скопируйте HTML и ресурсы в каталог `static` проекта и подключите страницы как шаблоны.
 
+## Django Integration
+
+Для удобства добавлен модуль `django_site`, предоставляющий готовые представления и маршруты на основе `TemplateView`. Скопируйте HTML-файлы в каталог `templates` и подключите `django_site.urls` в вашем `urls.py`:
+
+```python
+from django.urls import include, path
+
+urlpatterns = [
+    path('', include('django_site.urls')),
+]
+```
+
 ## Pages
 - **index.html** – main demo with the 3D car animation.
 - **api.html** – placeholder interface for viewing backend logs.
@@ -24,7 +36,11 @@ Each page includes a menu entry to show a transparent UML overlay with a simple 
 <div id="footer-placeholder"></div>
 <script src="load_layout.js" data-base="./"></script>
 ```
-Для копирования сайта в целевой каталог запустите `python3 deploy_static.py /usr/share/django-projects/welcome/static`.
+Для копирования сайта в целевой каталог запустите
+`python3 deploy_static.py /usr/share/django-projects/welcome/static`.
+Если нужен полный перенос в Django‑проект одной командой, используйте
+`python3 deploy_static.py --django /path/to/project`. Файлы автоматически
+окажутся в подкаталогах `templates` и `static` указанного проекта.
 
 
 ## Backend script
