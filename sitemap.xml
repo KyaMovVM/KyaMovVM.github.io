@@ -1,45 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kyamovvm.com/</loc>
+    <loc>https://kyamovvm.com/static/index.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/api.html</loc>
+    <loc>https://kyamovvm.com/static/api.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/control.html</loc>
+    <loc>https://kyamovvm.com/static/control.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/crossref.html</loc>
+    <loc>https://kyamovvm.com/static/crossref.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/docs.html</loc>
+    <loc>https://kyamovvm.com/static/docs.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/fail2ban.html</loc>
+    <loc>https://kyamovvm.com/static/fail2ban.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/footer.html</loc>
+    <loc>https://kyamovvm.com/static/json_intro.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/header.html</loc>
+    <loc>https://kyamovvm.com/static/login.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/index.html</loc>
+    <loc>https://kyamovvm.com/static/modules.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/json_intro.html</loc>
+    <loc>https://kyamovvm.com/static/plan.html</loc>
   </url>
   <url>
-    <loc>https://kyamovvm.com/login.html</loc>
-  </url>
-  <url>
-    <loc>https://kyamovvm.com/modules.html</loc>
-  </url>
-  <url>
-    <loc>https://kyamovvm.com/plan.html</loc>
-  </url>
-  <url>
-    <loc>https://kyamovvm.com/docs/manual_tests.html</loc>
+    <loc>https://kyamovvm.com/static/docs/manual_tests.html</loc>
   </url>
 </urlset>

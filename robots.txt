@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
-Sitemap: https://kyamovvm.com/sitemap.xml
+Allow: /static/
+Sitemap: https://kyamovvm.com/static/sitemap.xml
 Host: kyamovvm.com
