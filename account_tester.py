@@ -1,4 +1,5 @@
 """Скрипт для создания и проверки учетных записей."""
+
 import argparse
 import pyotp
 import auth_manager

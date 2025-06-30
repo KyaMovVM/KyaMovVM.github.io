@@ -8,9 +8,9 @@ from requirements_editor import load_requirements, save_requirements, edit_requi
 
 
 def test_edit_cycle(tmp_path, monkeypatch):
-    monkeypatch.setattr('requirements_editor.REQUIREMENTS_FILE', tmp_path / 'req.txt')
-    save_requirements(['old'])
-    inputs = iter(['new line', 'EOF'])
-    monkeypatch.setattr(builtins, 'input', lambda: next(inputs))
+    monkeypatch.setattr("requirements_editor.REQUIREMENTS_FILE", tmp_path / "req.txt")
+    save_requirements(["old"])
+    inputs = iter(["new line", "EOF"])
+    monkeypatch.setattr(builtins, "input", lambda: next(inputs))
     edit_requirements()
-    assert load_requirements() == ['new line']
+    assert load_requirements() == ["new line"]

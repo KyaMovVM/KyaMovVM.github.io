@@ -2,3 +2,6 @@ paramiko
 requests
 cuda-python
 pyotp
+
+black
+isort

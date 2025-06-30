@@ -2,8 +2,8 @@ import argparse
 import shutil
 from pathlib import Path
 
-EXCLUDE = {'.git', 'docs', 'tests', '__pycache__'}
-EXT_SKIP = {'.py', '.md'}
+EXCLUDE = {".git", "docs", "tests", "__pycache__"}
+EXT_SKIP = {".py", ".md"}
 
 
 def should_copy(path: Path) -> bool:
