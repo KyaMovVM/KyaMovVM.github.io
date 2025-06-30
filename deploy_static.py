@@ -2,8 +2,8 @@ import argparse
 import shutil
 from pathlib import Path
 
-EXCLUDE = {'.git', 'docs', 'tests', '__pycache__'}
-EXT_SKIP = {'.py', '.md'}
+EXCLUDE = {".git", "docs", "tests", "__pycache__"}
+EXT_SKIP = {".py", ".md"}
 
 
 def should_copy(path: Path) -> bool:
@@ -26,11 +26,11 @@ def deploy(src: Path, dst: Path) -> None:
             shutil.copy2(item, target)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description='Копирование статических файлов в указанную директорию'
+        description="Копирование статических файлов в указанную директорию"
     )
-    parser.add_argument('target', help='Путь назначения')
+    parser.add_argument("target", help="Путь назначения")
     args = parser.parse_args()
     deploy(Path(__file__).parent, Path(args.target))
-    print(f'Файлы скопированы в {args.target}')
+    print(f"Файлы скопированы в {args.target}")
