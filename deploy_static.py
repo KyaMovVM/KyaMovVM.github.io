@@ -26,11 +26,39 @@ def deploy(src: Path, dst: Path) -> None:
             shutil.copy2(item, target)
 
 
-if __name__ == "__main__":
+def deploy_django(src: Path, project: Path) -> None:
+    templates = project / 'templates'
+    static = project / 'static'
+    templates.mkdir(parents=True, exist_ok=True)
+    static.mkdir(parents=True, exist_ok=True)
+    for item in src.iterdir():
+        if not should_copy(item):
+            continue
+        if item.suffix == '.html':
+            target = templates / item.name
+            shutil.copy2(item, target)
+        else:
+            target = static / item.name
+            if item.is_dir():
+                shutil.copytree(item, target, dirs_exist_ok=True)
+            else:
+                shutil.copy2(item, target)
+
+
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Копирование статических файлов в указанную директорию"
+        description='Копирование файлов сайта в целевую директорию'
     )
-    parser.add_argument("target", help="Путь назначения")
+    parser.add_argument('target', nargs='?', help='Путь назначения')
+    parser.add_argument('--django', help='Путь к корню Django-проекта')
     args = parser.parse_args()
-    deploy(Path(__file__).parent, Path(args.target))
-    print(f"Файлы скопированы в {args.target}")
+
+    src = Path(__file__).parent
+    if args.django:
+        deploy_django(src, Path(args.django))
+        print(f'Файлы скопированы в {args.django}/templates и {args.django}/static')
+    elif args.target:
+        deploy(src, Path(args.target))
+        print(f'Файлы скопированы в {args.target}')
+    else:
+        parser.error('Не указан путь назначения или параметр --django')
