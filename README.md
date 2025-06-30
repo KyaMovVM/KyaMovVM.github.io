@@ -47,6 +47,23 @@ python crossref.py -o crossref.txt
 `template_editor.py`. Без параметров он покажет список доступных шаблонов,
 а передав имя файла – позволит заменить его содержимое.
 
+## Инструменты реструктуризации
+
+Скрипт `restructure_tools.py` автоматизирует приведение кода и HTML-шаблонов к единому виду.
+Для форматирования Python выполните:
+
+```bash
+python3 restructure_tools.py --python
+```
+
+Для обновления HTML-файлов:
+
+```bash
+python3 restructure_tools.py --html
+```
+
+
+
 ## Генерация AGENTS.md
 
 После изменения файлов в каталоге `docs` или UML-диаграмм
