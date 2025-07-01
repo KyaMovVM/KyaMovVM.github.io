@@ -1,0 +1,29 @@
+:root {
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-secondary: #625B71;
+  --md-sys-color-surface: #FFFBFE;
+  --md-sys-color-background: #FFFBFE;
+}
+body {
+  background-color: var(--md-sys-color-background);
+  color: #1C1B1F;
+  font-family: Roboto, sans-serif;
+}
+.m3-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--md-sys-color-primary);
+  color: white;
+  cursor: pointer;
+}
+.m3-btn:disabled {
+  background-color: #CCC;
+  color: #666;
+}
+.m3-field {
+  border: none;
+  border-bottom: 1px solid var(--md-sys-color-primary);
+  background: transparent;
+  padding: 4px;
+}

@@ -14,12 +14,22 @@ read -p "Введите домен или IP для ALLOWED_HOSTS: " HOSTNAME
 
 PROJECT_DIR="/srv/django/${PROJECT_NAME}"
 
+echo "== Проверка окружения =="
+echo "Проект: $PROJECT_NAME"
+echo "Приложение: $APP_NAME"
+echo "Хост: $HOSTNAME"
+echo "Каталог проекта: $PROJECT_DIR"
+ls -ld "$PROJECT_DIR" 2>/dev/null || echo "Каталог будет создан"
+which python3
+which apache2 2>/dev/null || which httpd
+
 if [ ! -d "$PROJECT_DIR" ]; then
     echo "Создаю директории..."
     sudo mkdir -p "$PROJECT_DIR"
     sudo chown $USER:$USER "$PROJECT_DIR"
 fi
 cd "$PROJECT_DIR"
+echo "Рабочая директория: $(pwd)"
 
 if [ ! -d "venv" ]; then
     echo "Создаю виртуальное окружение..."
@@ -33,11 +43,13 @@ pip install --upgrade django gunicorn matplotlib mod_wsgi
 if [ ! -f "$PROJECT_NAME/manage.py" ] && [ ! -f "manage.py" ]; then
     echo "Создаю Django проект..."
     django-admin startproject "$PROJECT_NAME" .
+    ls -d "$PROJECT_NAME"
 fi
 
 if [ ! -d "$APP_NAME" ]; then
     echo "Создаю приложение $APP_NAME..."
     python manage.py startapp "$APP_NAME"
+    ls -d "$APP_NAME"
 fi
 
 if ! grep -q "'${APP_NAME}'" ${PROJECT_NAME}/settings.py; then
@@ -55,6 +67,7 @@ if ! grep -q "STATIC_ROOT" ${PROJECT_NAME}/settings.py; then
 STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_ROOT = BASE_DIR / 'media'
 " >> ${PROJECT_NAME}/settings.py
+    ls -d static media
 fi
 
 python manage.py migrate
