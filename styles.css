@@ -116,6 +116,8 @@ nav.main-nav a {
 pre {
   overflow-x: auto;
 }
+#setup-steps li { cursor: pointer; }
+.highlight { background: #fff59d; }
 
 @media (max-width: 600px) {
   .banner {
