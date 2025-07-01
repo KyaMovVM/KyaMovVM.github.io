@@ -104,7 +104,9 @@ nav.main-nav a {
   background: rgba(255, 255, 255, 0.8);
   margin: 5% auto;
   padding: 1rem;
-  max-width: 600px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
   z-index: 10001;
 }
 
@@ -131,5 +133,6 @@ pre {
   .uml-window {
     width: 90%;
     max-width: none;
+    max-height: 90vh;
   }
 }
