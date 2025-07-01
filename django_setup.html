@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index,follow">
+    <title>Django Setup Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="material.min.css">
+    <script defer src="material.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div id="header-placeholder"></div>
+    <main class="mdl-layout__content container">
+        <h1>Развёртывание Django под Apache</h1>
+        <p>Скрипт <code>setup_django.sh</code> автоматически настроит проект и Apache. Выполняется он по шагам:</p>
+        <ol id="setup-steps">
+            <li>Создание директории проекта и установка прав.</li>
+            <li>Создание виртуального окружения.</li>
+            <li>Установка зависимостей Django и mod_wsgi.</li>
+            <li>Инициализация проекта и приложения при их отсутствии.</li>
+            <li>Обновление <code>settings.py</code> и добавление приложения.</li>
+            <li>Выполнение миграций и сбор статики.</li>
+            <li>Создание тестового представления и маршрутов.</li>
+            <li>Генерация конфигурации Apache и перезапуск сервера.</li>
+        </ol>
+        <p>Нажмите на пункт, чтобы отметить его выполнение.</p>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="django_setup_uml.svg" alt="django setup uml" title="Django setup" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="load_layout.js" data-base="./"></script>
+    <script>
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+        document.querySelectorAll('#setup-steps li').forEach(li => {
+            li.addEventListener('click', () => li.classList.toggle('highlight'));
+        });
+    </script>
+</body>
+</html>
