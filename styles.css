@@ -117,7 +117,10 @@ pre {
   overflow-x: auto;
 }
 #setup-steps li { cursor: pointer; }
-.highlight { background: #fff59d; }
+#setup-steps li.done {
+  text-decoration: line-through;
+  color: #4caf50;
+}
 
 @media (max-width: 600px) {
   .banner {
