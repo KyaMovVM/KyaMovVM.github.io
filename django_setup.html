@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="material.min.css">
     <script defer src="material.min.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <link rel="stylesheet" href="material3.css">
 </head>
 <body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <div id="header-placeholder"></div>
@@ -29,12 +28,23 @@
         <p>Щёлкните по пункту, чтобы отметить его завершённым.</p>
 
         <section>
+            <h2>Последовательные тесты</h2>
+            <p>Перед запуском скрипта убедитесь, что каждая директория существует и доступна.</p>
+            <ol>
+                <li>Проверьте свободное место командой <code>df -h</code>.</li>
+                <li>Просмотрите содержимое целевой папки проекта через <code>ls -l /srv/django</code>.</li>
+                <li>Убедитесь, что пути к Python и Apache верны: <code>which python3</code> и <code>which apache2</code>.</li>
+                <li>Проверьте доступ к шаблону <code>templates/base_template.txt</code> и дополните его своими заметками.</li>
+            </ol>
+        </section>
+
+        <section>
             <h2>Сформируйте команду запуска</h2>
             <p>Введите параметры для скрипта <code>setup_django.sh</code>.</p>
-            <label>Проект: <input id="proj" type="text" value="mysite"></label>
-            <label>Приложение: <input id="app" type="text" value="app"></label>
-            <label>Хост: <input id="host" type="text" value="localhost"></label>
-            <button id="gen-btn" class="mdl-button mdl-js-button mdl-button--raised">Сгенерировать</button>
+            <label>Проект: <input id="proj" type="text" value="mysite" class="m3-field"></label>
+            <label>Приложение: <input id="app" type="text" value="app" class="m3-field"></label>
+            <label>Хост: <input id="host" type="text" value="localhost" class="m3-field"></label>
+            <button id="gen-btn" class="m3-btn">Сгенерировать</button>
             <pre id="output"></pre>
         </section>
     </main>
@@ -47,29 +57,29 @@
     </div>
     <div id="footer-placeholder"></div>
     <script src="load_layout.js" data-base="./"></script>
-    <script>
-        function toggleUml() {
-            const overlay = document.getElementById('uml-overlay');
-            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
-        }
-    </script>
-    <py-script>
-from js import document
+<script>
+function toggleUml() {
+    const overlay = document.getElementById("uml-overlay");
+    overlay.style.display = overlay.style.display === "flex" ? "none" : "flex";
+}
 
-def toggle_done(event):
-    event.target.classList.toggle('done')
+function toggleDone(event) {
+    event.target.classList.toggle("done");
+}
 
-for li in document.querySelectorAll('#setup-steps li'):
-    li.addEventListener('click', toggle_done)
+document.querySelectorAll("#setup-steps li").forEach(li => {
+    li.addEventListener("click", toggleDone);
+});
 
-def gen_script(event):
-    proj = document.getElementById('proj').value or 'mysite'
-    app = document.getElementById('app').value or 'app'
-    host = document.getElementById('host').value or 'localhost'
-    command = f'PROJECT_NAME={proj} APP_NAME={app} HOSTNAME={host} bash setup_django.sh'
-    document.getElementById('output').textContent = command
+function genScript() {
+    const proj = document.getElementById("proj").value || "mysite";
+    const app = document.getElementById("app").value || "app";
+    const host = document.getElementById("host").value || "localhost";
+    const command = `PROJECT_NAME=${proj} APP_NAME=${app} HOSTNAME=${host} bash setup_django.sh`;
+    document.getElementById("output").textContent = command;
+}
 
-document.getElementById('gen-btn').addEventListener('click', gen_script)
-    </py-script>
+document.getElementById("gen-btn").addEventListener("click", genScript);
+</script>
 </body>
 </html>
