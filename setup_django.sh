@@ -34,7 +34,16 @@ echo "Рабочая директория: $(pwd)"
 
 if [ ! -d "venv" ]; then
     echo "Создаю виртуальное окружение..."
-    python3 -m venv venv
+    if ! python3 -m venv venv; then
+        echo "Модуль venv недоступен. Устанавливаю пакет python3-venv" >&2
+        if command -v apt-get >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y python3-venv
+        elif command -v yum >/dev/null 2>&1; then
+            sudo yum install -y python3-venv
+        fi
+        python3 -m venv venv
+    fi
 fi
 source venv/bin/activate
 
@@ -140,7 +149,6 @@ fi
 APACHE_SSL_CONF="/etc/apache2/sites-available/000-default-le-ssl.conf"
 APACHE_HTTP_CONF="/etc/apache2/sites-available/000-default.conf"
 echo "Настраиваю Apache..."
-
 sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
 <IfModule mod_ssl.c>
 <VirtualHost *:443>
@@ -155,7 +163,6 @@ sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/$HOSTNAME/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/$HOSTNAME/privkey.pem
-
 
     Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
     Header always set X-Frame-Options "SAMEORIGIN"
