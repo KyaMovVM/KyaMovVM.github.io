@@ -149,7 +149,6 @@ fi
 APACHE_SSL_CONF="/etc/apache2/sites-available/000-default-le-ssl.conf"
 APACHE_HTTP_CONF="/etc/apache2/sites-available/000-default.conf"
 echo "Настраиваю Apache..."
-
 sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
 <IfModule mod_ssl.c>
 <VirtualHost *:443>
