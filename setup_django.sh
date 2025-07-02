@@ -133,11 +133,12 @@ sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
     SSLCertificateFile /etc/letsencrypt/live/$HOSTNAME/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/$HOSTNAME/privkey.pem
 
+
     Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "geolocation=(), microphone=()"
+    Header always set Permissions-Policy "geolocation=(), microphone()"
     Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
 
     WSGIDaemonProcess ${PROJECT_NAME} user=www-data group=www-data python-path=${PROJECT_DIR}
