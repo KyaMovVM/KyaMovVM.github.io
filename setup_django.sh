@@ -64,6 +64,7 @@ fi
 echo "Устанавливаю Django, gunicorn, matplotlib и Pillow..."
 pip install --upgrade django gunicorn matplotlib pillow
 
+
 if [ ! -f "$PROJECT_NAME/manage.py" ] && [ ! -f "manage.py" ]; then
     echo "Создаю Django проект..."
     django-admin startproject "$PROJECT_NAME" .
@@ -155,7 +156,7 @@ sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/$HOSTNAME/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/$HOSTNAME/privkey.pem
-
+    
     Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
