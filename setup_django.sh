@@ -52,8 +52,18 @@ if ! command -v apxs >/dev/null 2>&1; then
     fi
 fi
 
-echo "Устанавливаю Django, gunicorn и matplotlib..."
-pip install --upgrade django gunicorn matplotlib
+echo "Устанавливаю системные библиотеки для Pillow..."
+# Pillow нужен matplotlib для сохранения графиков. Без libjpeg установка
+# может завершиться ошибкой сборки.
+if command -v apt-get >/dev/null 2>&1; then
+    sudo apt-get install -y libjpeg-dev zlib1g-dev
+elif command -v yum >/dev/null 2>&1; then
+    sudo yum install -y libjpeg-devel zlib-devel
+fi
+
+echo "Устанавливаю Django, gunicorn, matplotlib и Pillow..."
+pip install --upgrade django gunicorn matplotlib pillow
+
 
 if [ ! -f "$PROJECT_NAME/manage.py" ] && [ ! -f "manage.py" ]; then
     echo "Создаю Django проект..."
@@ -146,7 +156,7 @@ sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/$HOSTNAME/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/$HOSTNAME/privkey.pem
-
+    
     Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
