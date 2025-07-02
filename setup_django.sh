@@ -133,6 +133,7 @@ sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
     SSLCertificateFile /etc/letsencrypt/live/$HOSTNAME/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/$HOSTNAME/privkey.pem
 
+
     Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
@@ -173,6 +174,14 @@ sudo systemctl reload apache2
 echo "Права на проект для www-data..."
 sudo chown -R www-data:www-data $PROJECT_DIR
 sudo chmod -R 755 $PROJECT_DIR
+
+# Вывод последних строк журнала ошибок Apache
+LOG_FILE="${APACHE_LOG_DIR:-/var/log/apache2}/error.log"
+if [ ! -f "$LOG_FILE" ]; then
+    LOG_FILE="/var/log/httpd/error_log"
+fi
+echo "Последние сообщения из $LOG_FILE:"
+sudo tail -n 20 "$LOG_FILE" | tee django_error_tail.log
 
 echo "=== Готово! ==="
 echo "Перейди в браузер на http://$HOSTNAME/plot чтобы увидеть пример графика."
