@@ -2,6 +2,7 @@ paramiko
 requests
 cuda-python
 pyotp
+openai
 
 black
 isort
