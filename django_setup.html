@@ -14,7 +14,7 @@
     <div id="header-placeholder"></div>
     <main class="mdl-layout__content container">
         <h1>Развёртывание Django под Apache</h1>
-        <p>Скрипт <code>setup_django.sh</code> автоматически настроит проект и Apache. Выполняется он по шагам:</p>
+        <p>Скрипты <code>setup_django.sh</code> и <code>djangosetup.py</code> автоматически настроят проект и Apache. Выполняются они по шагам:</p>
         <ol id="setup-steps">
             <li>Создание директории проекта и установка прав.</li>
             <li>Создание виртуального окружения.</li>
@@ -40,7 +40,7 @@
 
         <section>
             <h2>Сформируйте команду запуска</h2>
-            <p>Введите параметры для скрипта <code>setup_django.sh</code>.</p>
+            <p>Введите параметры для скрипта <code>djangosetup.py</code> (аналогично <code>setup_django.sh</code>).</p>
             <label>Проект: <input id="proj" type="text" value="mysite" class="m3-field"></label>
             <label>Приложение: <input id="app" type="text" value="app" class="m3-field"></label>
             <label>Хост: <input id="host" type="text" value="localhost" class="m3-field"></label>
@@ -75,7 +75,7 @@ function genScript() {
     const proj = document.getElementById("proj").value || "mysite";
     const app = document.getElementById("app").value || "app";
     const host = document.getElementById("host").value || "localhost";
-    const command = `PROJECT_NAME=${proj} APP_NAME=${app} HOSTNAME=${host} bash setup_django.sh`;
+    const command = `PROJECT_NAME=${proj} APP_NAME=${app} HOSTNAME=${host} python3 djangosetup.py`;
     document.getElementById("output").textContent = command;
 }
 
