@@ -6,7 +6,6 @@
 OpenAI API с сервером LM Studio.
 """
 
-from __future__ import annotations
 
 import os
 import re
