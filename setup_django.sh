@@ -156,6 +156,7 @@ sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
     SSLCertificateFile /etc/letsencrypt/live/$HOSTNAME/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/$HOSTNAME/privkey.pem
 
+
     Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
