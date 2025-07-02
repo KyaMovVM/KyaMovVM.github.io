@@ -38,8 +38,22 @@ if [ ! -d "venv" ]; then
 fi
 source venv/bin/activate
 
-echo "Устанавливаю Django, gunicorn, matplotlib, mod_wsgi..."
-pip install --upgrade django gunicorn matplotlib mod_wsgi
+echo "Проверяю наличие apxs и mod_wsgi..."
+# При отсутствии apxs пытаемся установить dev-пакет Apache
+if ! command -v apxs >/dev/null 2>&1; then
+    echo "Команда apxs отсутствует. Попробую установить apache2-dev"
+    if command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get update
+        sudo apt-get install -y apache2-dev libapache2-mod-wsgi-py3
+    elif command -v yum >/dev/null 2>&1; then
+        sudo yum install -y httpd-devel mod_wsgi
+    else
+        echo "Не удалось определить менеджер пакетов. Установите apxs вручную." >&2
+    fi
+fi
+
+echo "Устанавливаю Django, gunicorn и matplotlib..."
+pip install --upgrade django gunicorn matplotlib
 
 if [ ! -f "$PROJECT_NAME/manage.py" ] && [ ! -f "manage.py" ]; then
     echo "Создаю Django проект..."
@@ -133,12 +147,11 @@ sudo bash -c "cat > $APACHE_SSL_CONF" <<EOV
     SSLCertificateFile /etc/letsencrypt/live/$HOSTNAME/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/$HOSTNAME/privkey.pem
 
-
     Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "geolocation=(), microphone()"
+    Header always set Permissions-Policy "geolocation=(), microphone=()"
     Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
 
     WSGIDaemonProcess ${PROJECT_NAME} user=www-data group=www-data python-path=${PROJECT_DIR}
