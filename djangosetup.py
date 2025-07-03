@@ -241,7 +241,6 @@ def main() -> None:
     Redirect permanent / https://{host}/
 </VirtualHost>
 """
-    run(f"sudo bash -c 'cat > {apache_conf}'", cwd=None)
     with open("cmd.sh", "w", encoding="utf-8") as f:
         f.write(f"cat <<'EOF' > {apache_conf}\n{conf_content}\nEOF\n")
     run(f"sudo bash cmd.sh && rm cmd.sh")
