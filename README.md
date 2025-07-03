@@ -78,6 +78,19 @@ python3 restructure_tools.py --python
 python3 restructure_tools.py --html
 ```
 
+## Django Setup
+
+Скрипт `djangosetup.py` автоматизирует разворачивание проекта под Apache.
+Он совместим с Python 3.6, поэтому может выполняться даже на устаревших
+серверах без обновления интерпретатора.
+Перед запуском установите зависимости:
+
+```bash
+pip install django gunicorn matplotlib pillow
+```
+
+После этого выполните скрипт и следуйте инструкциям в терминале.
+
 
 
 ## Генерация AGENTS.md
