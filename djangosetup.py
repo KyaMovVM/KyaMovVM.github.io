@@ -6,7 +6,6 @@
 OpenAI API с сервером LM Studio.
 """
 
-from __future__ import annotations
 
 import os
 import re
@@ -52,7 +51,14 @@ def analyze_log(text: str) -> str:
 def run(cmd: str, cwd: Optional[Path] = None) -> None:
     """Выполнить команду, вывести вывод и при ошибке предложить анализ."""
     print(f">> {cmd}")
-    proc = subprocess.run(cmd, shell=True, text=True, capture_output=True, cwd=cwd)
+    proc = subprocess.run(
+        cmd,
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        universal_newlines=True,
+        cwd=cwd,
+    )
     if proc.returncode != 0:
         print(proc.stderr)
         print(analyze_log(proc.stderr))
@@ -253,8 +259,9 @@ def main() -> None:
     if log_file.exists():
         text = subprocess.run(
             ["sudo", "tail", "-n", "20", str(log_file)],
-            text=True,
-            capture_output=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True,
         ).stdout
         print("Последние сообщения Apache:")
         print(text)
