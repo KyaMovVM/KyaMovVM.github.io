@@ -91,6 +91,21 @@ pip install django gunicorn matplotlib pillow
 
 После этого выполните скрипт и следуйте инструкциям в терминале.
 
+Новая версия `django-setup2.py` выполняет те же шаги, но не требует
+root-прав и подходит для локального развертывания.
+
+### Продакшн стек
+
+Для развёртывания с поддержкой PostgreSQL, Celery и WebSocket установите
+пакеты из `prod_requirements.txt`:
+
+```bash
+pip install -r prod_requirements.txt
+```
+
+Скрипт создаст файл `.env` по образцу `.env.example` и добавит базовые
+настройки `django-environ`, WhiteNoise и подключение к PostgreSQL.
+
 
 
 ## Генерация AGENTS.md
