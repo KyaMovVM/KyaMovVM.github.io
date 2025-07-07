@@ -1,0 +1,10 @@
+psycopg[binary]
+gunicorn
+whitenoise
+django-environ
+django-extensions
+djangorestframework
+drf-yasg
+celery
+channels
+django-cors-headers
