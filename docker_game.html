@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index,follow">
+    <title>Docker Compose Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="material.min.css">
+    <script defer src="material.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="material3.css">
+</head>
+<body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div id="header-placeholder"></div>
+    <main class="mdl-layout__content container">
+        <h1>Docker Compose Game</h1>
+        <p>Следуйте подсказкам и вводите команды Docker Compose.</p>
+        <pre id="console" class="game-console"></pre>
+        <input id="command" type="text" class="m3-field" placeholder="Введите команду">
+        <button id="enter-btn" class="m3-btn">Отправить</button>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="uml-diagram.svg" alt="UML diagram" title="UML diagram" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="load_layout.js" data-base="./"></script>
+    <script>
+        const steps = [
+            {hint: 'Соберите образы: docker compose build', regex: /^docker compose build/},
+            {hint: 'Запустите контейнеры: docker compose up -d', regex: /^docker compose up( -d)?/},
+            {hint: 'Проверьте статус: docker compose ps', regex: /^docker compose ps/}
+        ];
+        let step = 0;
+        const cons = document.getElementById('console');
+        function showHint() {
+            cons.textContent += steps[step].hint + '\n$ ';
+        }
+        function runCmd() {
+            const input = document.getElementById('command');
+            const cmd = input.value.trim();
+            cons.textContent += cmd + '\n';
+            if (steps[step].regex.test(cmd)) {
+                cons.textContent += 'OK\n';
+                step++;
+                if (step < steps.length) {
+                    cons.textContent += steps[step].hint + '\n$ ';
+                } else {
+                    cons.textContent += 'Все команды выполнены!\n';
+                }
+            } else {
+                cons.textContent += 'Команда не распознана, попробуйте ещё раз\n$ ';
+            }
+            input.value = '';
+        }
+        document.getElementById('enter-btn').addEventListener('click', runCmd);
+        document.getElementById('command').addEventListener('keydown', e => {
+            if (e.key === 'Enter') runCmd();
+        });
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+        showHint();
+    </script>
+</body>
+</html>

@@ -7,7 +7,7 @@ DOCS = [
     ROOT / "docs" / "manual_tests.html",
     ROOT / "docs" / "review.md",
 ]
-IMAGES = ["uml-diagram.svg", "fail2ban-uml.svg"]
+IMAGES = ["uml-diagram.svg", "fail2ban-uml.svg", "django_setup_uml.svg"]
 
 GUIDELINES = [
     "Всегда выполняйте `pytest -q` и добавляйте вывод в раздел Testing описания PR.",
