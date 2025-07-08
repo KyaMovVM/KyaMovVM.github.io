@@ -7,18 +7,12 @@
 - Если `nano` недоступен, используйте `sed` или `cat >` для редактирования файлов.
 - Документацию пишите на русском языке, если не указано иное.
 - Создавайте развёрнутые сообщения коммитов.
-- Пользователь открыл агенту доступ к сайту kyamovvm.com и к репозиторию GitHub.
 
 ## UML
 ![uml-diagram.svg](uml-diagram.svg)
 ![fail2ban-uml.svg](fail2ban-uml.svg)
+![django_setup_uml.svg](django_setup_uml.svg)
 
-### Кнопка UML
-
-- Пункт меню с классом `uml-link` находится в `header.html`.
-- Скрипт `load_layout.js` добавляет к нему обработчик, вызывающий функцию `toggleUml()`.
-- На каждой странице присутствует блок `<div id="uml-overlay" class="uml-overlay">` и функция `toggleUml`, переключающая CSS `display` между `none` и `flex`.
-- При добавлении новых страниц удостоверяйтесь, что эти элементы присутствуют, чтобы UML‑диаграмма открывалась корректно.
 ## Документация
 ### templates.md
 
@@ -66,6 +60,22 @@ python3 template_editor.py base_template.txt
 
 ### manual_tests.html
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index,follow">
+    <title>Manual Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="material.min.css">
+    <script defer src="material.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div id="header-placeholder"></div>
+    <main class="mdl-layout__content container">
+        <h1>Руководство по ручному тестированию</h1>
+        <pre>
 # Руководство по ручному тестированию
 
 Ниже приведены подробные чек-листы для проверки каждого раздела сайта.
@@ -90,12 +100,38 @@ python3 template_editor.py base_template.txt
 - [ ] Ссылки внутри страницы работают корректно.
 - [ ] Раздел с описанием ручных тестов указывает на данный файл.
 
+## Страница Django Setup (`django_setup.html`)
+- [ ] Поля для имени проекта и приложения формируют команду запуска.
+- [ ] Изображение `django_setup_uml.svg` открывается по пункту UML.
+
+## Игра Docker Compose (`docker_game.html`)
+- [ ] Поле ввода принимает команды Docker Compose.
+- [ ] Правильные команды продвигают игру вперёд.
+
 ## Прочие страницы
 - [ ] На страницах `modules.html`, `plan.html` и `crossref.html` корректно работает всплывающее окно с UML-диаграммой.
 - [ ] Все ссылки в меню ведут на существующие разделы.
 - [ ] Страница `login.html` переключает поля между паролем и SSH ключом.
 - [ ] MFA код принимается вместе с выбранным методом входа.
-
+        </pre>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="uml-diagram.svg" alt="UML diagram" title="UML diagram" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="load_layout.js" data-base="./"></script>
+    <script>
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>
 
 
 ### review.md
