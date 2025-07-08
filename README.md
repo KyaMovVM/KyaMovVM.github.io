@@ -1,11 +1,9 @@
 # KyaMovVM.github.io
 
-This repository hosts a simple demo site with a rotating 3D car and Material Design colors.
-Additional pages provide an API log viewer and basic documentation. A small Python
-В проект включены локальные файлы Material Design Lite, поэтому подключение к code.getmdl.io не требуется.
-script (`backend_tools.py`) demonstrates how backend interactions over SSH and
-HTTP requests could be performed.
-Кроме статического варианта сайт может быть размещён как приложение Django. Скопируйте HTML и ресурсы в каталог `static` проекта и подключите страницы как шаблоны.
+Репозиторий содержит демонстрационный сайт с вращающейся 3D‑моделью автомобиля и базовыми страницами документации.
+Все необходимые файлы Material Design Lite хранятся локально, поэтому подключение к `code.getmdl.io` не требуется.
+Скрипт `backend_tools.py` показывает пример взаимодействия с сервером по SSH и отправки HTTP‑запросов.
+Помимо статического размещения, сайт можно интегрировать в Django: скопируйте HTML и ресурсы в каталог `static` проекта и подключите страницы как шаблоны.
 
 ## Django Integration
 
@@ -19,17 +17,17 @@ urlpatterns = [
 ]
 ```
 
-## Pages
-- **index.html** – main demo with the 3D car animation.
-- **api.html** – placeholder interface for viewing backend logs.
-- **fail2ban.html** – interface for viewing Fail2Ban logs.
-- **docs.html** – minimal API documentation.
+## Страницы
+- **index.html** – главная демонстрация с вращающимся автомобилем.
+- **api.html** – упрощённый интерфейс просмотра логов сервера.
+- **fail2ban.html** – вывод логов Fail2Ban.
+- **docs.html** – краткая документация по API.
 - **modules.html** – обзор структуры модулей проекта.
 - **plan.html** – пошаговый план разработки.
 - **crossref.html** – таблица перекрёстных ссылок на функции и методы.
 - **json_intro.html** – краткое введение в JSON Schema.
 
-Each page includes a menu entry to show a transparent UML overlay with a simple architecture diagram (`uml-diagram.svg`). The Fail2Ban page uses <code>fail2ban-uml.svg</code>.
+Каждая страница содержит пункт меню для отображения UML‑диаграммы (`uml-diagram.svg`). На странице Fail2Ban используется изображение <code>fail2ban-uml.svg</code>.
 Окно диаграммы располагается поверх остальных элементов страницы и имеет полупрозрачный фон.
 Для загрузки меню и подвала теперь используется скрипт `load_layout.js`. Укажите атрибут `data-base` с относительным путём к ресурсам, чтобы страница работала в любой папке, например `/usr/share/django-projects/welcome/static`:
 ```html
@@ -44,10 +42,8 @@ Each page includes a menu entry to show a transparent UML overlay with a simple 
 
 
 ## Backend script
-`backend_tools.py` connects to a host via SSH and performs HTTP GET requests.
-It is only an example, credentials must be updated before use. GPU tasks can
-be prototyped using the [cuda-python](https://github.com/NVIDIA/cuda-python)
-library.
+Скрипт `backend_tools.py` подключается к удалённому хосту по SSH и выполняет HTTP‑запросы.
+Примерные учётные данные необходимо заменить перед использованием. Для GPU‑задач можно задействовать библиотеку [cuda-python](https://github.com/NVIDIA/cuda-python).
 
 ## Инструменты анализа
 
@@ -58,6 +54,7 @@ library.
 ```bash
 python crossref.py -o crossref.txt
 ```
+Получившийся список можно просмотреть на странице `crossref.html`.
 
 Для редактирования шаблонов ручного тестирования предназначен
 `template_editor.py`. Без параметров он покажет список доступных шаблонов,
@@ -65,7 +62,7 @@ python crossref.py -o crossref.txt
 
 ## Инструменты реструктуризации
 
-Скрипт `restructure_tools.py` автоматизирует приведение кода и HTML-шаблонов к единому виду.
+Скрипт `restructure_tools.py` автоматизирует приведение кода и HTML-шаблонов к единому виду и проверяет наличие общих блоков шапки и подвала на каждой странице.
 Для форматирования Python выполните:
 
 ```bash
@@ -123,7 +120,7 @@ Unit tests находятся в директории `tests` и файле
 pip install -r requirements.txt
 ```
 
-Then execute the tests with:
+Затем выполните тесты командой:
 
 ```bash
 pytest -q
