@@ -3,6 +3,7 @@ requests
 cuda-python
 pyotp
 openai
+gunicorn
 
 black
 isort
