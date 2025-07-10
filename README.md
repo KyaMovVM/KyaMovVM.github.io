@@ -93,6 +93,17 @@ python3 restructure_tools.py --python
 python3 restructure_tools.py --html
 ```
 
+## Figma API
+
+Скрипт `figma_api.py` обращается к REST интерфейсу Figma. Передайте токен в переменной окружения `FIGMA_TOKEN` или как первый аргумент. Доступные команды:
+
+```bash
+python3 figma_api.py me
+python3 figma_api.py FILE_KEY file
+python3 figma_api.py TEAM_ID projects
+```
+
+
 ## Django Setup
 
 Скрипт `djangosetup.py` автоматизирует разворачивание проекта под Apache.
