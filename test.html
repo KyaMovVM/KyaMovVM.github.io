@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="index,follow">
+    <title>Test Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="material.min.css">
+    <script defer src="material.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div id="header-placeholder"></div>
+    <main class="mdl-layout__content container">
+        <h1>Добро пожаловать на тестовую страницу!</h1>
+        <p>Здесь мы проверяем, как работает милая разметка.</p>
+        <div class="heart"></div>
+    </main>
+    <div id="uml-overlay" class="uml-overlay">
+        <div class="uml-window">
+            <h2>UML Diagram</h2>
+            <img src="uml-diagram.svg" alt="UML diagram" title="UML diagram" class="uml-img">
+            <button onclick="toggleUml()">Close</button>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="load_layout.js" data-base="./"></script>
+    <script>
+        function toggleUml() {
+            const overlay = document.getElementById('uml-overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>
