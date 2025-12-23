@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas!</title>
+    <style>
+        body, html {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #000428;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+        canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+        .card {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3.2em;
+            margin: 0;
+            text-shadow: 0 0 30px gold;
+            animation: glow 3s infinite alternate;
+        }
+        .japanese {
+            font-size: 2.4em;
+            margin: 25px 0;
+            text-shadow: 0 0 20px #ff69b4;
+        }
+        p {
+            font-size: 1.8em;
+            margin: 15px 0;
+            text-shadow: 0 0 15px white;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 15px gold; }
+            to { text-shadow: 0 0 40px gold, 0 0 60px gold; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <div class="card">
+        <h1>Merry Christmas! 🎄✨</h1>
+        <div class="japanese">君のこと考えてるよ 😊</div>
+        <p>友達と楽しい時間を過ごしてね！<br>
+        メリークリスマス！❤️</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Массив огней (как в токийской иллюминации)
+        const lights = [];
+        for (let i = 0; i < 200; i++) {
+            lights.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height * 0.8,
+                radius: Math.random() * 3 + 1,
+                color: ['#ffd700', '#ff4500', '#00bfff', '#ff69b4', '#ffffff'][Math.floor(Math.random() * 5)],
+                intensity: Math.random() * 0.5 + 0.5,
+                speed: Math.random() * 0.02 + 0.01
+            });
+        }
+
+        // Снежинки
+        const snowflakes = [];
+        for (let i = 0; i < 100; i++) {
+            snowflakes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3 + 1,
+                speed: Math.random() * 1 + 0.5
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Тёмный градиент ночи
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#000428');
+            gradient.addColorStop(1, '#004e92');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Рисуем мерцающие огни иллюминации
+            lights.forEach(light => {
+                light.intensity += light.speed;
+                if (light.intensity > 1 || light.intensity < 0.4) light.speed *= -1;
+
+                ctx.beginPath();
+                ctx.arc(light.x, light.y, light.radius * light.intensity * 3, 0, Math.PI * 2);
+                ctx.fillStyle = light.color + Math.floor(light.intensity * 255).toString(16).padStart(2, '0');
+                ctx.shadowBlur = 30;
+                ctx.shadowColor = light.color;
+                ctx.fill();
+
+                ctx.shadowBlur = 0;
+            });
+
+            // Падающий снег
+            snowflakes.forEach(flake => {
+                ctx.beginPath();
+                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fill();
+
+                flake.y += flake.speed;
+                if (flake.y > canvas.height) {
+                    flake.y = -10;
+                    flake.x = Math.random() * canvas.width;
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
